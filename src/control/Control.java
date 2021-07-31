@@ -58,15 +58,14 @@ public class Control {
 
     //Método para mostrar los perros en la veterinaria
     public void mostrarVeterinaria() {
-        if(this.noEstaVacia()){
-        String cadena = "";
-        for (Perro listaV : listaVeterinaria) {
-            cadena = cadena + "\n" + listaV + "\n";
-        }
-        JOptionPane.showMessageDialog(null, cadena, "Veterinaria Registro", 1);
-        }
-        else {
-        JOptionPane.showMessageDialog(null, "Registro Vacio", "Registro Vacio", 2);
+        if (this.noEstaVacia()) {
+            String cadena = "";
+            for (Perro listaV : listaVeterinaria) {
+                cadena = cadena + "\n" + listaV + "\n";
+            }
+            JOptionPane.showMessageDialog(null, cadena, "Veterinaria Registro", 1);
+        } else {
+            JOptionPane.showMessageDialog(null, "Registro Vacio", "Registro Vacio", 2);
         }
     }
 
@@ -76,10 +75,29 @@ public class Control {
         boolean encontrado = false;
         for (int i = 0; i < listaVeterinaria.size() && !encontrado; i++) {
             if (listaVeterinaria.get(i).getCurp().equalsIgnoreCase(curp)) {
-                JOptionPane.showMessageDialog(null, "Vacuna Aplicada " + "\nPerrro: " + listaVeterinaria.get(i).getNombre() + "\n" + "Dosis: " + listaVeterinaria.get(i).vacunar(), "Vacunación", 1);
-                perro = listaVeterinaria.get(i);
-                listaVacunados.add(perro);
-                contadorVacunados++;
+                if (this.noEstaVaciaVacunados()) {
+                    boolean bandera = false;
+                    for (int j = 0; j < listaVacunados.size() && !bandera; j++) {
+                        if (listaVacunados.get(j).getCurp().equalsIgnoreCase(curp)) {
+                            JOptionPane.showMessageDialog(null, "Perro ya vacunado", "Vacunado ", 2);
+                            bandera = true;
+                        }
+                        if (j == listaVacunados.size() - 1 && !bandera) {
+                            JOptionPane.showMessageDialog(null, "Vacuna Aplicada " + "\nPerrro: " + listaVeterinaria.get(i).getNombre() + "\n" + "Dosis: " + listaVeterinaria.get(i).vacunar(), "Vacunación", 1);
+                            perro = listaVeterinaria.get(i);
+                            listaVacunados.add(perro);
+                            contadorVacunados++;
+                            bandera = true;
+                        }
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Vacuna Aplicada " + "\nPerrro: " + listaVeterinaria.get(i).getNombre() + "\n" + "Dosis: " + listaVeterinaria.get(i).vacunar(), "Vacunación", 1);
+                    perro = listaVeterinaria.get(i);
+                    listaVacunados.add(perro);
+                    contadorVacunados++;
+                }
+
                 encontrado = true;
             }
         }

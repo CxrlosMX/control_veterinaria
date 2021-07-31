@@ -141,7 +141,7 @@ public class Perro {
     //Método para imprimir datos del perro
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\nRaza: " + raza + "\nSexo: " + sexo + "\nCurp: " + curp + "\nEdad: " + edad + "\n";
+        return "Nombre: " + nombre + "\nRaza: " + raza + "\nSexo: " + sexo + "\nCurp: " + curp + "\nEdad: " + edad + "años\n";
     }
 
 }
