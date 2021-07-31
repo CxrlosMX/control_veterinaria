@@ -25,11 +25,13 @@ public class Perro {
     private String curp;
     private int edad;
     private char sexo;
+    private boolean vacunado;
 
     public Perro(String nombre, String raza, int edad, char sexo) {
         this.nombre = nombre;
         this.raza = raza;
         verificarSexo(sexo);
+        vacunado=false;
         this.curp = generarCurp();
         comprobarEdad(edad); //Método que comprueba si la edad del perro es correcta
 
@@ -123,6 +125,7 @@ public class Perro {
     //Método para vacunar
     public String vacunar() {
         String c = "";
+        this.vacunado=true;
         if (this.edad <= 2) {
             //  JOptionPane.showMessageDialog(null, "Vacuna Aplicada " + nombre + "\n" + "Dosis: " + Metodos.V1, nombre, 1);
             c = Metodos.V1;
@@ -141,7 +144,7 @@ public class Perro {
     //Método para imprimir datos del perro
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\nRaza: " + raza + "\nSexo: " + sexo + "\nCurp: " + curp + "\nEdad: " + edad + "años\n";
+        return "Nombre: " + nombre + "\nRaza: " + raza + "\nSexo: " + sexo + "\nCurp: " + curp + "\nEdad: " + edad + " años\n"+"Estado: "+((vacunado)?"Vacunado":"No vacunado");
     }
 
 }

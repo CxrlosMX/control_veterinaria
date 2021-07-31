@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  * @Email: LuisCRendon131@gmail.com
  * @Date: 29/07/2021
  *
+ * 
  */
 public class Control {
 
@@ -71,6 +72,7 @@ public class Control {
 
     //Método para vacunar a un perro
     public void vacunarPerro(String curp) {
+      
         Perro perro;
         boolean encontrado = false;
         for (int i = 0; i < listaVeterinaria.size() && !encontrado; i++) {
@@ -102,8 +104,10 @@ public class Control {
             }
         }
         if (!encontrado) {
-            JOptionPane.showConfirmDialog(null, "Curp no encontrara", "Error de busqueda", 0);
+            JOptionPane.showMessageDialog(null, "Curp no encontrara", "Error de busqueda", 0);
         }
+        
+       
     }
 
     //Método para mostrar el registro de los perros vacunados
@@ -111,7 +115,7 @@ public class Control {
         if (this.noEstaVaciaVacunados()) {
             String cadena = "";
             for (Perro i : listaVacunados) {
-                cadena = cadena + "\n" + i.toString() + "Dosis: " + i.vacunar() + "\n";
+                cadena = cadena + "\n" + i.toString() + "\nDosis: " + i.vacunar() + "\n";
             }
             JOptionPane.showMessageDialog(null, cadena, "Registro Vacunados", 1);
         } else {
